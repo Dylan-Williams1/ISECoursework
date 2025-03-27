@@ -1,0 +1,56 @@
+Manual for Genetic Algorithm (GA) and Random Search Configuration Tuning Tool
+===========================================================================
+
+Overview:
+---------
+This tool is designed for automatically tuning configurations of software systems within a constrained evaluation budget. It supports two methods:
+
+- Random Search (RS): baseline method for randomly selecting configurations.
+- Genetic Algorithm (GA): intelligent search method based on evolutionary algorithms.
+
+Prerequisites:
+--------------
+- Python 3.8 or later installed
+- Dependencies installed from `requirements.txt`
+
+Install dependencies:
+---------------------
+Run the following command from your project's root directory:
+
+    pip install -r requirements.txt
+
+Directory structure:
+--------------------
+- datasets/           : Input CSV datasets for different systems.
+- GA_RawRunData/      : Results produced by GA.
+- RS_RawRunData/      : Results produced by Random Search.
+- GAsearch_results/   : Individual GA run results.
+- search_results/     : Individual RS run results.
+- GA.py               : Genetic Algorithm implementation.
+- RandomSearch.py     : Random Search implementation.
+
+Usage:
+------
+### Run Random Search:
+    python RandomSearch.py
+
+This generates result CSV files under the folder `search_results`.
+
+### Run Genetic Algorithm:
+    python GA.py
+
+This generates result CSV files under the folder `GAsearch_results`.
+
+### Run Multiple Tests (for statistical analysis):
+
+- For Genetic Algorithm multiple runs:
+    python testGA.py
+
+- For Random Search multiple runs:
+    python testRS.py
+
+Output:
+-------
+- Each run's best fitness scores are stored under `GA_RawRunData` and `RS_RawRunData`.
+- Summary statistics (`mean`, `standard deviation`) are automatically computed.
+

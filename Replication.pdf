@@ -1,0 +1,63 @@
+Replication Instructions for Experimental Results
+=================================================
+
+To replicate the results reported in the project report, follow the steps below.
+
+1. Environment Setup
+---------------------
+- Ensure Python 3.8 or newer is installed.
+- Install required dependencies using:
+
+    pip install -r requirements.txt
+
+2. Data Preparation
+--------------------
+- Ensure all dataset CSV files are located in the following folder:
+
+    datasets/
+
+- Each dataset should contain valid configuration parameters and a performance metric column as the last column.
+
+3. Replicating Random Search Results
+-------------------------------------
+- Run the Random Search batch evaluation script:
+
+    python testRS.py
+
+- This runs Random Search 100 times per dataset.
+- Outputs:
+    - Raw per-run data → RS_RawRunData/
+    - Summary stats → RS_RawRunData/RS_summary_statistics.csv
+
+4. Replicating Genetic Algorithm (GA) Results
+----------------------------------------------
+- Run the GA batch evaluation script:
+
+    python testGA.py
+
+- This runs the Genetic Algorithm 100 times per dataset.
+- Outputs:
+    - Raw per-run data → GA_RawRunData/
+    - Summary stats → GA_RawRunData/GA_summary_statistics.csv
+
+5. Performing Statistical Analysis
+-----------------------------------
+- Run the Welch's t-test script:
+
+    python t-test.py
+
+- Make sure this script reads:
+    - `RS_RawRunData/RS_summary_statistics.csv`
+    - `GA_RawRunData/GA_summary_statistics.csv`
+
+- Output:
+    - T-test results including mean, SD, p-values, and significance flags → `Welch_ttest_results.csv`
+
+Expected Final Outputs
+------------------------
+You should obtain:
+- `RS_summary_statistics.csv` and `GA_summary_statistics.csv`
+- `Welch_ttest_results.csv` showing comparative analysis between RS and GA
+- Raw data CSVs for each system inside `RS_RawRunData/` and `GA_RawRunData/`
+
+These can be used to reproduce the tables and conclusions from the report.
